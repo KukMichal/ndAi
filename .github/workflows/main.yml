@@ -32,6 +32,11 @@ jobs:
             cd ${{ secrets.PATH }}
             rm -rf .git
             cd backend
+            env
+            nvm -v
+            npm -v
+            node -v
+            whoami
             npm i
             npm run prod:stop
             npm run prod:start
