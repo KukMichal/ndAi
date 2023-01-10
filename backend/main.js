@@ -14,7 +14,7 @@ console.log('We can decode it back into:\n', decoded)
  */
 
 export async function getKeywords (text) {
-    const encoded = encode(`Write 5 keywords in a numbered list:\n\n` + text);
+    const encoded = encode(`Rewrite:\n\n` + text);
     console.log("Encoded:", encoded);
 
     const response = await openai.createCompletion({

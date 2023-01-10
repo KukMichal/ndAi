@@ -4,7 +4,9 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "test": "echo \\\"Error: no ../test specified\\\" && exit 1"
+    "test": "echo \\\"Error: no ../test specified\\\" && exit 1",
+    "prod:start": "forever start -l ~/logs/lawgic.log -a --uid lawgic api.js",
+    "prod:stop": "forever stop lawgic"
   },
   "keywords": [],
   "author": "",
