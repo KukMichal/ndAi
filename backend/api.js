@@ -21,7 +21,8 @@ app.use(fileupload());
 
 app.post('/api/input', async (req, res) => {
     const text = req.body.text;
-    const keywords = await getKeywords(text);
+    const prompt = req.body.prompt;
+    const keywords = await getKeywords(prompt, text);
     res.json({keywords});
 });
 

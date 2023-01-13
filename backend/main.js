@@ -13,13 +13,12 @@ const decoded = decode(encoded)
 console.log('We can decode it back into:\n', decoded)
  */
 
-export async function getKeywords (text) {
-    const encoded = encode(`Rewrite:\n\n` + text);
-    console.log("Encoded:", encoded);
-
+export async function getKeywords (prompt, text) {
+    console.log("Sending input:", prompt, text)
+    
     const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: encoded,
+        prompt: prompt + text,
         max_tokens: 1500,
         top_p: 1,
         temperature: 0.5,
