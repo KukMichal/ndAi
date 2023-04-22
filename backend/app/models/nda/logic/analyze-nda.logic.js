@@ -4,7 +4,6 @@ import path from 'path';
 import config from 'config';
 import url from 'url';
 
-
 const configuration = new Configuration({
   apiKey: config.chatGpt.apiKey,
 });
