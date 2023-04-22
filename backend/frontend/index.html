@@ -37,135 +37,140 @@
         </div>
     </nav>
     <div style="margin-left: 40px; margin-right: 40px;">
-        <div class="text-center" style="margin-top: 80px;">
-            <h1>NDA review made easy</h1>
-            <div class="small-text" id="typed-text">
-                Are you tired of reading those long, boring NDAs? Do you feel like your eyes are going to fall out of their sockets every time you have to review one?
-                Well, fear not my friend! Our service is here to save the day with its magical power of automatic NDA review!
+        <form id="formUpload">
+            <div class="text-center" style="margin-top: 80px;">
+                <h1>NDA review made easy</h1>
+                <div class="small-text" id="typed-text">
+                    Are you tired of reading those long, boring NDAs? Do you feel like your eyes are going to fall out of their sockets every time you have to review one?
+                    Well, fear not my friend! Our service is here to save the day with its magical power of automatic NDA review!
 
+                </div>
+                <div class="text-blue-md" style="margin-top: 80px;">Step 1</div>
+                <h2 style="margin-bottom: 20px;">Select your NDA</h2>
+                    <label for="fileUpload" class="form-label"></label>
+                    <input type="file" id="fileUpload" style="display:none;">
+                    <button type="button" class="btn btn-dark" onclick="document.getElementById('fileUpload').click()">Select a .pdf file</button>
+                    <div class="mt-1" id="fileName"></div>
             </div>
-            <div class="text-blue-md" style="margin-top: 80px;">Step 1</div>
-            <h2 style="margin-bottom: 20px;">Select your NDA</h2>
-            <form id="formUpload">
-                <label for="fileUpload" class="form-label"></label>
-                <input type="file" id="file-upload" style="display:none;">
-                <button type="button" class="btn btn-dark" onclick="document.getElementById('file-upload').click()">Select a .pdf file</button>
-            </form>
-        </div>
-        <div class="text-center" style="margin-top: 80px;">
-            <span class="text-blue-md">Step 2</span>
-            <h2 style="margin-bottom: 20px;">Specify your requirements</h2>
-        </div>
-        <div class="box d-flex justify-content-around">
-            <div class="row">
-                <div class="col-4 bold">
-                    Governing law
+            <div class="text-center" style="margin-top: 80px;">
+                <span class="text-blue-md">Step 2</span>
+                <h2 style="margin-bottom: 20px;">Specify your requirements</h2>
+            </div>
+            <div class="box d-flex justify-content-around">
+                <div class="row">
+                    <div class="col-4 bold">
+                        Governing law
+                    </div>
+                    <div class="col-8">
+                        <input id="governingLaw" type="text" class="form-control" placeholder="England and Wales">
+                    </div>
                 </div>
-                <div class="col-8">
-                    <input type="text" class="form-control" placeholder="England and Wales" aria-label="Dollar amount (with dot and two decimal places)">
+                <div class="row mt-20">
+                    <div class="col-4 bold">
+                        Term
+                    </div>
+                    <div class="col-8">
+                        <input id="term" type="number" class="form-control" placeholder="3">
+                    </div>
+                </div>
+                <div class="row mt-20">
+                    <div class="col-4 bold">
+                        Selected exclusions
+                    </div>
+                    <div class="col-8">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                            <label class="form-check-label" for="flexCheckDefault1">
+                                Information in the public domain
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                            <label class="form-check-label" for="flexCheckDefault2">
+                                Information that is independently developed
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Information received from a third party
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Information that must be disclosed by law
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-20">
+                    <div class="col-4 bold">
+                        Permitted disclosure
+                    </div>
+                    <div class="col-8">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Disclosure with prior written consent
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Disclosure to employees or agents
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Disclosure required by law
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Disclosure in connection with a merger or acquisition
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-20">
+                    <button type="submit" class="btn btn-dark mt-4">Click here to start the review</button>
                 </div>
             </div>
-            <div class="row mt-20">
-                <div class="col-4 bold">
-                    Term
-                </div>
-                <div class="col-8">
-                    <input type="number" class="form-control" placeholder="3" aria-label="Dollar amount (with dot and two decimal places)">
-                </div>
-            </div>
-            <div class="row mt-20">
-                <div class="col-4 bold">
-                    Selected exclusions
-                </div>
-                <div class="col-8">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check1">
-                        <label class="form-check-label" for="check1">
-                            Information in the public domain
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check2">
-                        <label class="form-check-label" for="check2">
-                            Information that is independently developed
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check3">
-                        <label class="form-check-label" for="check3">
-                            Information received from a third party
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check4">
-                        <label class="form-check-label" for="check4">
-                            Information that must be disclosed by law
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-20">
-                <div class="col-4 bold">
-                    Permitted disclosure
-                </div>
-                <div class="col-8">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check5">
-                        <label class="form-check-label" for="check5">
-                            Disclosure with prior written consent
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check6">
-                        <label class="form-check-label" for="check6">
-                            Disclosure to employees or agents
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check7">
-                        <label class="form-check-label" for="check7">
-                            Disclosure required by law
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="check8">
-                        <label class="form-check-label" for="check8">
-                            Disclosure in connection with a merger or acquisition
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-20">
-                <button type="submit" class="btn btn-dark mt-4">Click here to start the review</button>
-            </div>
-        </div>
+        </form>
         <div class="text-center">
             <div class="text-blue-md" style="margin-top: 80px">Step 3</div>
             <h2 style="margin-bottom: 20px;">Get your GPT-powered review!</h2>
         </div>
-        <form style="padding: 40px 40px 20px 40px">
-            <div class="row">
-                <div class="col-9">
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1"></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" style="border: 1px solid; border-radius: 10px"></textarea>
-                    </div>
-                </div>
-                <div class="col-3" style="margin-top: 20px;">
-                    <h2>
-                        Your nd.ai score
-                    </h2>
-                    <div class="score text-center">
-                        A+
-                    </div>
-                </div>
-            </div>
-            <div class="text-center button-container">
-                <button type="submit" class="btn btn-dark mt-4">Save this review</button>
-                <button type="submit" class="btn btn-outline-dark mt-4">I'm done. Delete my NDA.</button>
-            </div>
-
-        </form>
+<!--        <form style="padding: 40px 40px 20px 40px">-->
+<!--            <div class="row">-->
+<!--                <div class="col-9">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="exampleFormControlTextarea1"></label>-->
+<!--                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" style="border: 1px solid; border-radius: 10px"></textarea>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-3" style="margin-top: 20px;">-->
+<!--                    <h2>-->
+<!--                        Your nd.ai score-->
+<!--                    </h2>-->
+<!--                    <div class="score text-center">-->
+<!--                        A+-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="text-center button-container">-->
+<!--                <button type="submit" class="btn btn-dark mt-4">Save this review</button>-->
+<!--                <button type="submit" class="btn btn-outline-dark mt-4">I'm done. Delete my NDA.</button>-->
+<!--            </div>-->
+<!--        </form>-->
+    </div>
+    <div class="text-center">
+        <div class="text-blue-md" style="margin-top: 80px">Step 3</div>
+        <h2 style="margin-bottom: 20px;">Get your GPT-powered review!</h2>
+        <div style="text-align: justify; width: 80%; margin: 0px auto;" id="output"></div>
     </div>
 </body>
 
@@ -174,15 +179,27 @@
 
   const API_URL = 'http://' + window.location.hostname + ':4000';
 
+  function displayResult(data) {
+    document.getElementById('output').innerHTML = data.text.trim().replace(/\n/g, '<br />');
+  }
+
+  document.getElementById('fileUpload').addEventListener('change', function(e) {
+    if (e.target.files[0]) {
+      document.getElementById('fileName').innerHTML = e.target.files[0].name;
+    }
+  });
+
   formUpload.addEventListener('submit', event => {
     event.preventDefault();
 
     const file = document.getElementById("fileUpload").files[0];
     const governingLaw = document.getElementById("governingLaw").value;
+    const term = document.getElementById("term").value;
 
     const formData = new FormData();
     formData.append("nda", file);
     formData.append('governingLaw', governingLaw);
+    formData.append('term', term);
 
     const input = {
       method: 'POST',
@@ -196,7 +213,7 @@
         if (data.error) {
           alert(data.error);
         } else {
-          document.getElementById('output').innerHTML = JSON.stringify(data);
+          displayResult(data);
         }
       })
       .catch(error => {
@@ -224,8 +241,55 @@
   //   .then((response) => response.json())
   //   .then((data) => {
   //       console.log("out:", data);
+  //       displayResult(data);
   //   })
 
+</script>
+
+<div id="my_pdf_viewer">
+    <div id="canvas_container">
+        <canvas id="pdf_renderer"></canvas>
+    </div>
+    <div id="navigation_controls">
+        <button id="go_previous">Previous</button>
+        <input id="current_page" value="1" type="number"/>
+        <button id="go_next">Next</button>
+    </div>
+    <div id="zoom_controls">
+        <button id="zoom_in">+</button>
+        <button id="zoom_out">-</button>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+<script>
+  var myState = {
+    pdf: null,
+    currentPage: 1,
+    zoom: 1
+  }
+
+  pdfjsLib.getDocument('./api/nda/file').then((pdf) => {
+    myState.pdf = pdf;
+    myState.numPages = pdf._pdfInfo.numPages;
+    console.log(myState);
+    render();
+  });
+  function render() {
+    myState.pdf.getPage(myState.currentPage).then((page) => {
+
+      var canvas = document.getElementById("pdf_renderer");
+      var ctx = canvas.getContext('2d');
+
+      var viewport = page.getViewport(myState.zoom);
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+
+      page.render({
+        canvasContext: ctx,
+        viewport: viewport
+      });
+    });
+  }
 </script>
 
 </html>
