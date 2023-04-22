@@ -178,7 +178,13 @@
     <div class="text-center">
         <div class="text-blue-md" style="margin-top: 80px">Step 3</div>
         <h2 style="margin-bottom: 20px;">Get your GPT-powered review!</h2>
-        <div style="text-align: justify; width: 80%; margin: 0px auto;" id="output"></div>
+        <div style="text-align: justify; width: 80%; margin: 0px auto;" id="output">
+            <ul id="outputList">
+                <li><i class="fa fa-check green" aria-hidden="true"></i>File is NDA document</li>
+                <li><i class="fa fa-xmark red" aria-hidden="true"></i>Governing Law is not czech</li>
+                <li><i class="fa fa-xmark red" aria-hidden="true"></i>The Term is not set to 2 years</li>
+            </ul>
+        </div>
     </div>
 </body>
 
@@ -189,7 +195,28 @@
   const API_URL = 'http://' + window.location.hostname + ':4000';
 
   function displayResult(data) {
-    document.getElementById('output').innerHTML = data.text.trim().replace(/\n/g, '<br />');
+
+
+    const response = `
+        <li><i class="fa fa-check green" aria-hidden="true"></i>File is NDA document</li>
+        ${
+            data.response.governingLaw.match
+              ? `<li><i class="fa fa-check green" aria-hidden="true"></i>Governing Law is ${data.input.governingLaw}</li>`
+              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i>Governing Law is not ${data.input.governingLaw}</li>`
+        }
+        ${
+            data.response.term.match
+              ? `<li><i class="fa fa-check green" aria-hidden="true"></i>The Term is set to ${data.input.term} years</li>`
+              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i>The Term is not set to ${data.input.term} years</li>`
+        }
+
+        <li> Law is <span id="outputGoverningLaw"></span></li>
+        <li></li>
+        <li></li>
+    `
+    document.getElementById('outputList').innerHTML = response;
+
+    $("#output")[0].scrollTo(0, Number.MAX_SAFE_INTEGER);
   }
 
   document.getElementById('fileUpload').addEventListener('change', function(e) {
