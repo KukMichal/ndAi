@@ -1,12 +1,12 @@
 {
-  "name": "lawgic",
+  "name": "ndai",
   "version": "1.0.0",
   "type": "module",
-  "main": "main.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \\\"Error: no ../test specified\\\" && exit 1",
-    "prod:start": "forever start -l ~/logs/lawgic.log -a --uid lawgic api.js",
-    "prod:stop": "forever stop lawgic"
+    "prod:start": "forever start -l ~/logs/ndai.log -a --uid ndai api.js",
+    "prod:stop": "forever stop ndai"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "axios": "^1.1.3",
     "body-parser": "^1.20.1",
     "cheerio": "^1.0.0-rc.12",
+    "config": "^3.3.9",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
@@ -24,7 +25,7 @@
     "node-fetch": "^3.3.0",
     "node-html-parser": "^6.1.4",
     "officeparser": "^3.0.0",
-    "openai": "^3.1.0",
+    "openai": "^3.2.1",
     "parse5": "^7.1.2",
     "pdf-parse": "^1.1.1",
     "quill": "^1.3.6",

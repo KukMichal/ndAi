@@ -1,127 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hi</title>
+    <title>NDAI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
 </head>
-<body style="padding: 80px 20px 20px 20px">
-    <div class="container" style="width: 540px;">
-        <div style="padding-bottom: 20px; padding-top: 20px;">
-            <h3>1. What do you want the bot to do?</h3>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radio" value="Give me 5 keywords from the text:" id="check_keywords">
-                <label class="form-check-label" for="check_keywords">
-                    Give me 5 keywords from the text
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radio" value="Summarise the text:" id="check_summary">
-                <label class="form-check-label" for="check_summary">
-                    Summarise the text
-                </label>
-            </div>
-        </div>
-        <h3>2. Choose one type of input and click on submit</h3>
-        <form class="mb-3" id="formText">
-            <label for="input" class="form-label">Input</label>
-            <textarea class="form-control" id="input" rows="10"></textarea>
-            <button type="submit" class="btn btn-outline-info" style="margin-top: 20px;">Submit</button>
-        </form>
-        <form class="mb-3" id="formUpload">
-            <label for="fileUpload" class="form-label">Upload file (.docx, .doc, .pdf)</label>
-            <input class="form-control" type="file" id="fileUpload">
-            <button type="submit" class="btn btn-outline-info" style="margin-top: 20px;">Submit</button>
-        </form>
-        <form class="mb-3" id="urlUpload">
-            <div class="form-group">
-                <label for="urlInput">URL</label>
-                <input type="url" class="form-control" id="urlInput">
-                <button type="submit" class="btn btn-outline-info" style="margin-top: 20px;">Submit</button>
-            </div>
-        </form>
-        <h3>3. Output from the bot:</h3>
-        <div id="output" style="margin-bottom: 100px;" >
-        </div>
+<body id='app' class="p-4">
+<div class="container" style="width: 540px;">
+    <h3>1. Choose your NDA</h3>
+    <form class="mb-3" id="formUpload">
+        <label for="fileUpload" class="form-label">Upload file (.pdf)</label>
+        <input class="form-control" type="file" id="fileUpload">
+
+        <input class="form-input" type="text" id="governingLaw" value="czech" />
+        <button type="submit" class="btn btn-outline-info mt-4">Submit</button>
+    </form>
+
+    <h3>2. Output from the bot:</h3>
+    <div id="output" class="mb-4">
     </div>
+</div>
 </body>
 
 <script>
-    const formText = document.getElementById('formText');
-    const formUpload = document.getElementById('formUpload');
-    const urlUpload = document.getElementById('urlUpload');
-    const input = document.getElementById('input');
-    const urlInput = document.getElementById('urlInput');
-    const check_keywords = document.getElementById('check_keywords');
-    const check_summary = document.getElementById('check_summary');
+  const formUpload = document.getElementById('formUpload');
 
-    const API_URL = 'http://' + window.location.hostname + ':4000';
+  const API_URL = 'http://' + window.location.hostname + ':4000';
 
-    formText.addEventListener('submit', event => {
-        event.preventDefault();
-        const text = input.value;
-        const prompt = check_summary.checked ? check_summary.value : check_keywords.value;
-        fetch(API_URL + '/api/input', {
-            method: 'POST',
-            body: JSON.stringify({ text, prompt }),
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('output').innerHTML=data.keywords;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    });
-    formUpload.addEventListener('submit', event => {
-        event.preventDefault();
+  formUpload.addEventListener('submit', event => {
+    event.preventDefault();
 
-        const file = document.getElementById("fileUpload").files[0];
-        let formData = new FormData();
+    const file = document.getElementById("fileUpload").files[0];
+    const governingLaw = document.getElementById("governingLaw").value;
 
-        formData.append("upload", file);
-        const prompt = check_summary.checked ? check_summary.value : check_keywords.value;
+    const formData = new FormData();
+    formData.append("nda", file);
+    formData.append('governingLaw', governingLaw);
 
-        fetch(API_URL + '/api/upload', {
-            method: 'POST',
-            body: formData, prompt,
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else if (data.keywords) {
-                    document.getElementById('output').innerHTML=data.keywords;
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    });
-    urlUpload.addEventListener('submit', event => {
-        event.preventDefault();
-        const url = urlInput.value;
-        console.log(url);
-        const prompt = check_summary.checked ? check_summary.value : check_keywords.value;
-
-        fetch(API_URL + '/api/url', {
-            method: 'POST',
-            body: JSON.stringify({ url, prompt }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('output').innerHTML=data.keywords;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    });
+    const input = {
+      method: 'POST',
+      body: formData,
+    };
+    console.log(input)
+    fetch(API_URL + '/api/nda/analyze', input)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("out:", data);
+        if (data.error) {
+          alert(data.error);
+        } else if (data.keywords) {
+          document.getElementById('output').innerHTML = data.keywords;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 </script>
 
 </html>
