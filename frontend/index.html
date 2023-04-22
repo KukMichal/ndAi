@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!--    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -23,9 +23,14 @@
         <label for="fileUpload" class="form-label">Upload file (.pdf)</label>
         <input class="form-control" type="file" id="fileUpload">
 
+
         <input class="form-input" type="text" id="governingLaw" value="czech" />
         <button type="submit" class="btn btn-outline-info mt-4">Submit</button>
     </form>
+
+    Inputy viz https://docs.google.com/document/d/1zysN5Z3ZL96TdAv0uiTMxMJPgp_zVIBqQqBLULZ_0T4/edit
+    governingLaw select
+    term number
 
     <h3>2. Output from the bot:</h3>
     <div id="output" class="mb-4">
@@ -59,8 +64,8 @@
         console.log("out:", data);
         if (data.error) {
           alert(data.error);
-        } else if (data.keywords) {
-          document.getElementById('output').innerHTML = data.keywords;
+        } else {
+          document.getElementById('output').innerHTML = JSON.stringify(data);
         }
       })
       .catch(error => {
