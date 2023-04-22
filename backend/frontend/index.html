@@ -199,11 +199,11 @@
 
 
     const response = `
-        <li><i class="fa fa-check green" aria-hidden="true"></i> File is NDA document</li>
+        <li><i class="fa fa-check green" aria-hidden="true"></i> Your file is an NDA. Congratz!</li>
         ${
             data.response.governingLaw.match
-              ? `<li><i class="fa fa-check green" aria-hidden="true"></i> Governing Law is ${data.input.governingLaw}</li>`
-              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i> Governing Law is not ${data.input.governingLaw}</li>`
+              ? `<li><i class="fa fa-check green" aria-hidden="true"></i> Governing law is that of ${data.input.governingLaw}</li>`
+              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i> Bummer! Governing law is not that of ${data.input.governingLaw}</li>`
         }
         ${
             data.response.term.match
