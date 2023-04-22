@@ -210,12 +210,11 @@
         }
 
         <li> Law is <span id="outputGoverningLaw"></span></li>
-        <li></li>
-        <li></li>
     `
     document.getElementById('outputList').innerHTML = response;
 
-    $("#output")[0].scrollTo(0, Number.MAX_SAFE_INTEGER);
+    $("#outputList").get(0).scrollIntoView({behavior: 'smooth'});
+
   }
 
   document.getElementById('fileUpload').addEventListener('change', function(e) {
