@@ -11,12 +11,14 @@ const init = () => {
   app.use(bodyParser.json());
   app.use(cors());
   app.use(fileUpload());
+  app.use(express.static('frontend/static'));
 
   app.use('/api/', routes);
 
   app.get('/', (req, res) => {
-    res.sendFile('./frontend/index.html', { root: '../' });
+    res.sendFile('./frontend/index.html', { root: './' });
   });
+
   app.listen(config.port, () => {
     console.log(`API listening on port http://localhost:${config.port}`);
   });

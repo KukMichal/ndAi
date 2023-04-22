@@ -1,0 +1,40 @@
+.text-blue-md {
+    font-family: 'Inter', sans-serif;
+    color: #0E6BA8;
+    font-size: 30px;
+}
+
+.mt-140 {
+    margin-top: 140px;
+}
+
+h1 {
+    font-size: 64px;
+}
+h2 {
+    color: #0E6BA8;
+
+}
+
+.btn-dark {
+    padding: 10px 40px 10px 40px;
+    border-radius: 10px;
+    background: #00072D;
+    font-family: 'Inter', sans-serif;
+}
+
+.box {
+    width:80%;
+    background-color: #E5E5E5;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 20px;
+    color: #0E6BA8;
+    font-size: 24px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
