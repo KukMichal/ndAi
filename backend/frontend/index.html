@@ -4,7 +4,6 @@
     <title>ND.AI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <script
             src="https://code.jquery.com/jquery-3.6.4.min.js"
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
@@ -178,20 +177,21 @@
         <h2 style="margin-bottom: 40px;">Get your GPT-powered review!</h2>
         <div style="text-align: justify; width: 400px; margin: 0px auto;" id="output">
             <ul id="outputList" class="text-center;">
-                <li><i class="fa fa-check green" aria-hidden="true"></i> Your file is an NDA.</li>
-                <li><i class="fa fa-xmark red" aria-hidden="true"></i> Governing law is not Czech law.</li>
-                <li><i class="fa fa-xmark red" aria-hidden="true"></i> The Term is not set to 2 years.</li>
             </ul>
         </div>
-        <button type="submit" class="btn btn-dark mt-4">
-            I'm done. Delete my NDA.
-        </button>
+
+        <a href="/" id="deleteFile">
+            <button class="btn btn-dark mt-4">
+                I'm done. Delete my NDA.
+            </button>
+        </a>
     </div>
 </body>
 
 <script>
   const formUpload = document.getElementById('formUpload');
   $("#loading" ).hide();
+  $("#deleteFile" ).hide();
 
   const API_URL = 'http://' + window.location.hostname + ':4000';
 
@@ -199,23 +199,22 @@
 
 
     const response = `
-        <li><i class="fa fa-check green" aria-hidden="true"></i>File is NDA document</li>
+        <li><i class="fa fa-check green" aria-hidden="true"></i> File is NDA document</li>
         ${
             data.response.governingLaw.match
-              ? `<li><i class="fa fa-check green" aria-hidden="true"></i>Governing Law is ${data.input.governingLaw}</li>`
-              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i>Governing Law is not ${data.input.governingLaw}</li>`
+              ? `<li><i class="fa fa-check green" aria-hidden="true"></i> Governing Law is ${data.input.governingLaw}</li>`
+              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i> Governing Law is not ${data.input.governingLaw}</li>`
         }
         ${
             data.response.term.match
-              ? `<li><i class="fa fa-check green" aria-hidden="true"></i>The Term is set to ${data.input.term} years</li>`
-              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i>The Term is not set to ${data.input.term} years</li>`
+              ? `<li><i class="fa fa-check green" aria-hidden="true"></i> The Term is set to ${data.input.term} years</li>`
+              : `<li><i class="fa fa-xmark red" aria-hidden="true"></i> The Term is not set to ${data.input.term} years</li>`
         }
-
-        <li> Law is <span id="outputGoverningLaw"></span></li>
     `
     document.getElementById('outputList').innerHTML = response;
 
     $("#outputList").get(0).scrollIntoView({behavior: 'smooth'});
+    $("#deleteFile").fadeIn();
 
   }
 
