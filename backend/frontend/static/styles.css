@@ -5,7 +5,7 @@
 }
 
 .small-text {
-    font-size: 16px;
+    font-size: 18px;
     color: #597081;
     width: 70%;
     margin: 0 auto;
@@ -69,8 +69,17 @@ h2 {
 
 .navbar {
     padding: 18px;
-    background: -webkit-linear-gradient(102deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-    border-radius: 10px;
+    background-color: transparent !important;
+}
+
+.navbar-nav {
+    column-gap: 48px;
+    flex-wrap: wrap;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #444054;
+    font-weight: 600;
 }
 
 .navbar-brand {
