@@ -143,7 +143,6 @@
                 <div class="text-center mt-20">
                     <button type="submit" class="btn btn-dark mt-4">
                         Click here to start the review
-
                     </button>
                     <div class="fa-2x mt-2" id="loading">
                         <i class="fas fa-spinner fa-pulse"></i>
@@ -174,16 +173,19 @@
 <!--            </div>-->
 <!--        </form>-->
     </div>
-    <div class="text-center">
-        <div class="text-blue-md" style="margin-top: 80px">Step 3</div>
-        <h2 style="margin-bottom: 20px;">Get your GPT-powered review!</h2>
-        <div style="text-align: justify; width: 80%; margin: 0px auto;" id="output">
-            <ul id="outputList">
-                <li><i class="fa fa-check green" aria-hidden="true"></i>File is NDA document</li>
-                <li><i class="fa fa-xmark red" aria-hidden="true"></i>Governing Law is not czech</li>
-                <li><i class="fa fa-xmark red" aria-hidden="true"></i>The Term is not set to 2 years</li>
+    <div class="text-center" style="margin-bottom: 80px;">
+        <div class="text-blue-md" style="margin-top: 80px;">Step 3</div>
+        <h2 style="margin-bottom: 40px;">Get your GPT-powered review!</h2>
+        <div style="text-align: justify; width: 400px; margin: 0px auto;" id="output">
+            <ul id="outputList" class="text-center;">
+                <li><i class="fa fa-check green" aria-hidden="true"></i> Your file is an NDA.</li>
+                <li><i class="fa fa-xmark red" aria-hidden="true"></i> Governing law is not Czech law.</li>
+                <li><i class="fa fa-xmark red" aria-hidden="true"></i> The Term is not set to 2 years.</li>
             </ul>
         </div>
+        <button type="submit" class="btn btn-dark mt-4">
+            I'm done. Delete my NDA.
+        </button>
     </div>
 </body>
 
