@@ -4,6 +4,7 @@ import path from 'path';
 import config from 'config';
 import url from 'url';
 
+
 const configuration = new Configuration({
   apiKey: config.chatGpt.apiKey,
 });
@@ -41,28 +42,51 @@ async function analyzeChatGPT(input, text) {
   // }
 
   const prompt2 = `Complete this json {
-    "governingLaw": string, 
-    "governingLawMatch": return boolean if governing law is ${input.governingLaw},
-    "governingLawLine": exact line where governing law is defined,
-    "governingLawStart": exact first 5 words where governing law is defined,
-    "governingLawEnd": exact last 5 words governing law is defined,
-    "governingLawLineNumber": document line number where governing law is defined,
-    "termIsExactNumber": boolean is term limited by exact years or months?, 
-    "termLine": exact line how long does the contract last
+    "governingLaw": {
+      "match": return boolean if governing law is ${input.governingLaw}
+      "line": exact line where governing law is defined,
+      "start": exact first 5 words where governing law is defined,
+      "end": exact last 5 words governing law is defined,
+      "lineNumber": document line number where governing law is defined,
+    },
+    "term" : {
+      "isExactNumber": boolean is term limited by exact years or months?, 
+      "line": exact line how long does the contract last,
+      "regex": return the shortest possible regular expression that searches the line,
+    },
+    "disputeMethod": {
+      "line: return line where dispute resolution method is defined,
+      "match": return boolean if dispute resolution method is ${input.disputeMethod},
+    },
+    "disclosure": {
+      "line": return line where permission of disclosure is defined,
+      "match": return boolean if dispute resolution method at least one of ${input.disclosure},
+      "match_int": return index of ${input.disclosure} that are permitted disclosure methods,
+    },
+    "exclusion": {
+      "line": return line where exclusion is defined,
+      "match": return boolean if exclusions is ${input.exclusions},
+      "match_int": return list of the following ${input.exclusions} which are true,
+    }
+    "remedies: {
+      "line": return line where remedies for breach are difend,
+      "match": return boolean if remedies for breach is ${input.remedies},
+      "match_int": which of the following remedies for breach ${input.remedies} are possible,
+    }
   }.`;
     // "scope": Is this an open ended definition of confidential information for the purpose of a non disclosure agreement?
 
-  console.log("Sending mock response.");
-  return {
-    "governingLaw": "the State of",
-    "governingLawMatch": false,
-    "governingLawLine": "13. Applicable Law: This Agreement is made under, and shall be construed to, the laws of the State of",
-    "governingLawStart": "13. Applicable Law: This Agreement",
-    "governingLawEnd": "laws of the State of",
-    "governingLawLineNumber": 13,
-    "termIsExactNumber": false,
-    "termLine": "6. Term: This Agreement and Recipient’s duty to hold Discloser’s trade secrets in confidence shall remain in effect until the above-described trade secrets are no longer trade secrets or until Discloser sends Recipient written notice releasing Recipient from this Agreement, whichever occurs first."
-  };
+  // console.log("Sending mock response.");
+  // return {
+  //  "governingLaw": "the State of",
+  //  "governingLawMatch": false,
+  //  "governingLawLine": "13. Applicable Law: This Agreement is made under, and shall be construed to, the laws of the State of",
+  //  "governingLawStart": "13. Applicable Law: This Agreement",
+  //  "governingLawEnd": "laws of the State of",
+  //  "governingLawLineNumber": 13,
+  //  "termIsExactNumber": false,
+  //  "termLine": "6. Term: This Agreement and Recipient’s duty to hold Discloser’s trade secrets in confidence shall remain in effect until the above-described trade secrets are no longer trade secrets or until Discloser sends Recipient written notice releasing Recipient from this Agreement, whichever occurs first."
+  //};
 
   console.log("PROMPT:", prompt2);
   const getGoverningPositionPrompt = {
@@ -99,15 +123,19 @@ export async function analyze(input) {
 
 (async () => {
   const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-  const NDA_MOCK_PATH = path.join(__dirname, '../../../../mock/One-Page NDA.pdf');
+  // const NDA_MOCK_PATH = path.join(__dirname, '../../../../mock/One-Page NDA.pdf');
+  // const NDA_MOCK_PATH = path.join(__dirname, '../../../../mock/Mutual NDA Two-Pages.pdf');
+  const NDA_MOCK_PATH = path.join(__dirname, '../../../../mock/NDA.pdf');
 
   const text = await parsePdfToText(NDA_MOCK_PATH);
   const input = {
     governingLaw: 'czech',
+    disputeMethod: 'mediation',
+    disclosure: '[disclosure with prior written consent, disclosure to employees or agents]',
+    exclusions: '[information in the public domain, disclosure required by law]',
+    remedies: '[contractual fine, termination]',
     term: 'czech',
   };
 
   analyzeChatGPT(input, text);
 })();
-
-
